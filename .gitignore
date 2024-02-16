@@ -12,3 +12,6 @@ Testing
 *.exe
 main
 app
+
+# Ignore compile_commands.json file
+compile_commands.json
