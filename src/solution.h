@@ -11,7 +11,7 @@ public:
     long long charToInt(char ch);
     int numberOfDigits(std::string s);
     long long orderOfMagnitude(int number_of_digits);
-    void discardLeadingNonAllowedChars(std::string &s);
+    void discardNonAllowedLeadingChars(std::string &s);
     int getSign(std::string &s);
     int fixBounds(long long result, int sign);
     bool hasSign(const std::string &s);

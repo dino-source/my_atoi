@@ -13,11 +13,12 @@ int Solution::myAtoi(std::string s) {
         return 0;
     }
 
-    discardLeadingNonAllowedChars(s);
+    discardNonAllowedLeadingChars(s);
 
     long long result {};
-    int sign {getSign(s)};
+    int sign {1};
     if (hasSign(s)) {
+        sign = getSign(s);
         s.pop_back();
     }
 
@@ -73,14 +74,14 @@ long long Solution::orderOfMagnitude(int number_of_digits) {
     return order_of_magnitude;
 };
 
-void Solution::discardLeadingNonAllowedChars(std::string &s) {
+void Solution::discardNonAllowedLeadingChars(std::string &s) {
     // This function will discard all non digit characters,
     // except of sign '+' and sign '-'
     while (!std::isdigit(s.back())) {
-        s.pop_back();
         if (hasSign((s))) {
             return;
         }
+        s.pop_back();
     }
 };
 
