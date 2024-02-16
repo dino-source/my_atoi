@@ -1,2 +1,8 @@
+# Ignore build artefacts
 build
+
+# Ignore temporary files created by Google Test Framework
 Testing
+
+# Ignore .vscode config files
+.vscode
