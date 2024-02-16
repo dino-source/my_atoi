@@ -19,5 +19,5 @@ include(CTest)
 
 # Add subdirectories with code
 add_subdirectory(external)
-add_subdirectory(tests)
+add_subdirectory(test)
 add_subdirectory(src)

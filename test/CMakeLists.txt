@@ -24,5 +24,5 @@ if (BUILD_TESTING)
     # Finds all the Google tests associated with the executable
     gtest_discover_tests(my_atoi_test)
 
-    target_include_directories(my_atoi_test PUBLIC tests src)
+    target_include_directories(my_atoi_test PUBLIC test src)
 endif()
