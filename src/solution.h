@@ -11,8 +11,8 @@ public:
     long long orderOfMagnitude(int number_of_digits);
     void discardLeadingNonAllowedChars(std::string &s);
     int getSign(std::string &s);
-    int fix_bounds(long long result, int sign);
-    bool has_sign(const std::string &s);
-    bool is_negative(const std::string &s);
-    bool is_positive(const std::string &s);
+    int fixBounds(long long result, int sign);
+    bool hasSign(const std::string &s);
+    bool isNegative(const std::string &s);
+    bool isPositive(const std::string &s);
 };

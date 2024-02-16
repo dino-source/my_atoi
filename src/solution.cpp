@@ -17,7 +17,7 @@ int Solution::myAtoi(std::string s) {
 
     long long result {};
     int sign {getSign(s)};
-    if (has_sign(s)) {
+    if (hasSign(s)) {
         s.pop_back();
     }
 
@@ -27,11 +27,11 @@ int Solution::myAtoi(std::string s) {
             s.pop_back();
         }
         else {
-            return fix_bounds(result, sign);
+            return fixBounds(result, sign);
         }
     }
 
-    return fix_bounds(result, sign);
+    return fixBounds(result, sign);
 }
 
 long long Solution::charToInt(char ch) {
@@ -41,7 +41,7 @@ long long Solution::charToInt(char ch) {
 int Solution::numberOfDigits(std::string s) {
     char sign {};
     bool has_sign_as_first_char {false};
-    if (has_sign(s)) {
+    if (hasSign(s)) {
         sign = s.back();
         s.pop_back();
         has_sign_as_first_char = true;
@@ -78,7 +78,7 @@ void Solution::discardLeadingNonAllowedChars(std::string &s) {
     // except of sign '+' and sign '-'
     while (!std::isdigit(s.back())) {
         s.pop_back();
-        if (has_sign((s))) {
+        if (hasSign((s))) {
             return;
         }
     }
@@ -86,17 +86,17 @@ void Solution::discardLeadingNonAllowedChars(std::string &s) {
 
 int Solution::getSign(std::string &s) {
     int sign {};
-    if (is_positive(s)) {
+    if (isPositive(s)) {
         sign = 1;
     }
-    else if (is_negative(s)) {
+    else if (isNegative(s)) {
         sign = -1;
     }
 
     return sign;
 };
 
-int Solution::fix_bounds(long long result, int sign) {
+int Solution::fixBounds(long long result, int sign) {
     result *= sign;
     if (result > 2147483647) {
         result = 2147483647;
@@ -107,14 +107,14 @@ int Solution::fix_bounds(long long result, int sign) {
     return static_cast<int>(result);
 };
 
-bool Solution::has_sign(const std::string &s) {
+bool Solution::hasSign(const std::string &s) {
     return s.back() == '+' || s.back() == '-';
 }
 
-bool Solution::is_negative(const std::string &s) {
+bool Solution::isNegative(const std::string &s) {
     return s.back() == '-';
 }
 
-bool Solution::is_positive(const std::string &s) {
+bool Solution::isPositive(const std::string &s) {
     return s.back() == '+' || std::isdigit(s.back());
 }
