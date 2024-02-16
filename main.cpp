@@ -1,18 +1,7 @@
 #include <iostream>
-#include <string>
-
-class Solution {
-public:
-    int myAtoi(std::string s) {
-        int result {};
-
-        // TODO: implement this function (see task_description.md)
-
-        return result;
-    }
-};
+#include "solution.h"
 
 int main() {
     Solution sol;
-    std::cout << sol.myAtoi("") << '\n';
+    std::cout << sol.myAtoi("1234") << '\n';
 }

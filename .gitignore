@@ -6,3 +6,9 @@ Testing
 
 # Ignore .vscode config files
 .vscode
+
+# Ignore binaries
+*.out
+*.exe
+main
+app

@@ -17,3 +17,6 @@ include(CTest)
 # Add subdirectories with code
 add_subdirectory(external)
 add_subdirectory(tests)
+
+set(SOURCES solution.h solution.cpp main.cpp)
+add_executable(app ${SOURCES})
