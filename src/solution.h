@@ -3,6 +3,8 @@
 
 class Solution {
 public:
+    static constexpr int UPPER_BOUND {2147483647};
+    static constexpr int LOWER_BOUND {-2147483648};
     int myAtoi(std::string s);
 
 //private:

@@ -97,9 +97,6 @@ int Solution::getSign(std::string &s) {
 };
 
 int Solution::fixBounds(long long result, int sign) {
-    const int UPPER_BOUND {2147483647};
-    const int LOWER_BOUND {-2147483648};
-    
     result *= sign;
     if (result > UPPER_BOUND) {
         result = UPPER_BOUND;
