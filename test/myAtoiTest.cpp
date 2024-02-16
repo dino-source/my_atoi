@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <gtest/gtest.h>
 #include "../src/solution.h"
 
