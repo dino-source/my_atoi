@@ -15,7 +15,8 @@ if (BUILD_TESTING)
         "hasSignTest.cpp"
         "isNegativeTest.cpp"
         "isPositiveTest.cpp"
-        "myAtoiTest.cpp")
+        "myAtoiTest.cpp"
+        "discardNonAllowedLeadingCharsTest.cpp")
 
     add_executable(my_atoi_test ${SOURCES})
 
