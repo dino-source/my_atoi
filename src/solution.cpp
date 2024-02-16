@@ -97,12 +97,15 @@ int Solution::getSign(std::string &s) {
 };
 
 int Solution::fixBounds(long long result, int sign) {
+    const int UPPER_BOUND {2147483647};
+    const int LOWER_BOUND {-2147483648};
+    
     result *= sign;
-    if (result > 2147483647) {
-        result = 2147483647;
+    if (result > UPPER_BOUND) {
+        result = UPPER_BOUND;
     }
-    if (result < -2147483648) {
-        result = -2147483648;
+    else if (result < LOWER_BOUND) {
+        result = LOWER_BOUND;
     }
     return static_cast<int>(result);
 };
@@ -116,5 +119,5 @@ bool Solution::isNegative(const std::string &s) {
 }
 
 bool Solution::isPositive(const std::string &s) {
-    return s.back() == '+' || std::isdigit(s.back());
+    return !isNegative(s);
 }
