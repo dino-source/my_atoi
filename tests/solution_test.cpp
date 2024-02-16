@@ -1,6 +1,6 @@
 #include <algorithm>
 #include <gtest/gtest.h>
-#include "../solution.h"
+#include "../src/solution.h"
 
 
 TEST(TestTopic, NumberHasSignPlus) {
