@@ -26,6 +26,16 @@ int Solution::myAtoi(std::string s) {
         }
     }
 
+    if (hasSign(s)) {
+        char sign = s.back();
+        s.pop_back();
+        discardLeadingZeroes(s);
+        if (isNaN(s)) {
+            return 0;
+        }
+        s.push_back(sign);
+    }
+
     int number_of_digits = numberOfDigits(s);
     if (number_of_digits == 0 || std::isalpha(s.back())) {
         return 0;

@@ -30,7 +30,7 @@ TEST(TestTopic, DiscardLeadingZeros2) {
 
 TEST(TestTopic, DiscardLeadingZeros3) {
     Solution sol;
-    std::string test_data {"-000000000000000000"};
+    std::string test_data {"000000000000000000"};
     std::ranges::reverse(test_data);
 
     std::string expected_result {""};
@@ -42,7 +42,7 @@ TEST(TestTopic, DiscardLeadingZeros3) {
 
 TEST(TestTopic, DiscardLeadingZeros4) {
     Solution sol;
-    std::string test_data {"000000000000000000"};
+    std::string test_data {"-000000000000000000"};
     std::ranges::reverse(test_data);
 
     std::string expected_result {""};
@@ -51,4 +51,17 @@ TEST(TestTopic, DiscardLeadingZeros4) {
 
     EXPECT_STREQ(expected_result.c_str(), actual_result.c_str());
 }
+
+TEST(TestTopic, DiscardLeadingZeros5) {
+    Solution sol;
+    std::string test_data {"-000000000000001"};
+    std::ranges::reverse(test_data);
+
+    std::string expected_result {"1-"};
+    sol.discardLeadingZeroes(test_data);
+    std::string actual_result {test_data};
+
+    EXPECT_STREQ(expected_result.c_str(), actual_result.c_str());
+}
+
 
