@@ -71,7 +71,7 @@ void Solution::discardLeadingSpaces(std::string &s) {
 
     int ss = static_cast<int>(s.size());
 
-    for (int i {ss - 1}; i > 0; --i) {
+    for (int i {ss - 1}; i >= 0; --i) {
         if (isspace(s[i])) {
             s.pop_back();
         }
