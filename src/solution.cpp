@@ -34,7 +34,7 @@ int Solution::myAtoi(std::string s) {
 }
 
 long long Solution::charToInt(char ch) {
-    return static_cast<int>(ch) - 48;
+    return static_cast<long long>(ch) - 48;
 };
 
 int Solution::numberOfDigits(std::string s) {
