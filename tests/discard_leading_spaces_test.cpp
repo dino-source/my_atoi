@@ -51,3 +51,15 @@ TEST(TestTopic, DiscardLeadingSpaces4) {
 
     EXPECT_STREQ(expected_result.c_str(), actual_result.c_str());
 }
+
+TEST(TestTopic, DiscardLeadingSpaces5) {
+    Solution sol;
+    std::string test_data {"   "};
+    std::ranges::reverse(test_data);
+
+    std::string expected_result {""};
+    sol.discardLeadingSpaces(test_data);
+    std::string actual_result {test_data};
+
+    EXPECT_STREQ(expected_result.c_str(), actual_result.c_str());
+}
