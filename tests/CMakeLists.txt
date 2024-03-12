@@ -15,6 +15,7 @@ if (BUILD_TESTING)
         "is_positive_test.cpp"
         "my_atoi_test.cpp"
         "number_of_digits_test.cpp"
+        "order_of_magnitude_test.cpp"
         "../src/solution.h"
         "../src/solution.cpp")
     add_executable(solution_test ${SOURCES})
