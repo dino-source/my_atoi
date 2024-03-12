@@ -71,3 +71,23 @@ TEST(TestTopic, MyAtoi7) {
 
     EXPECT_EQ(expected_result, actual_result);
 }
+
+TEST(TestTopic, MyAtoi8) {
+    Solution sol;
+    std::string test_data {"00000-42a1234"};
+
+    int expected_result {0};
+    int actual_result {sol.myAtoi(test_data)};
+
+    EXPECT_EQ(expected_result, actual_result);
+}
+
+TEST(TestTopic, MyAtoi9) {
+    Solution sol;
+    std::string test_data {"000000000000000000"};
+
+    int expected_result {0};
+    int actual_result {sol.myAtoi(test_data)};
+
+    EXPECT_EQ(expected_result, actual_result);
+}

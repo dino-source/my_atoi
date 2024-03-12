@@ -6,17 +6,25 @@
 
 
 int Solution::myAtoi(std::string s) {
-    if (s.empty()) {
-        return 0;
-    }
-    
-    if (s.size() == 1 && !std::isdigit(s.front())) {
+    if (isNaN(s)) {
         return 0;
     }
 
     std::ranges::reverse(s);
-    discardLeadingSpaces(s);
-    discardLeadingZeroes(s);
+
+    if (hasLeadingSpaces(s)) {
+        discardLeadingSpaces(s);
+        if (isNaN(s)) {
+            return 0;
+        }
+    }
+
+    if (hasLeadingZeros(s)) {
+        discardLeadingZeroes(s);
+        if (isNaN(s) || s.back() == '-' || s.back() == '+' ) {
+            return 0;
+        }
+    }
 
     int number_of_digits = numberOfDigits(s);
     if (number_of_digits == 0 || std::isalpha(s.back())) {
@@ -55,6 +63,11 @@ long long Solution::charToInt(char ch) {
     return static_cast<long long>(ch) - 48;
 };
 
+bool Solution::isNaN(const std::string &s) const {
+    return s.empty() ||
+        (s.size() == 1 && !std::isdigit(s.front()));
+}
+
 int Solution::numberOfDigits(std::string s) {
     if (hasSign(s)) {
         s.pop_back();
@@ -74,7 +87,7 @@ int Solution::numberOfDigits(std::string s) {
     return number_of_digits;
 };
 
-long long Solution::orderOfMagnitude(int number_of_digits) {
+long long Solution::orderOfMagnitude(int number_of_digits) const {
     long long order_of_magnitude {1};
     for ([[maybe_unused]] int i {1}; i < number_of_digits; ++i) {
         order_of_magnitude *= 10;
@@ -123,7 +136,7 @@ void Solution::discardLeadingZeroes(std::string &s) {
     }
 }
 
-int Solution::getSign(std::string &s) {
+int Solution::getSign(const std::string &s) const {
     int sign {};
     if (isPositive(s)) {
         sign = 1;
@@ -146,14 +159,23 @@ int Solution::fixBounds(long long result, int sign) {
     return static_cast<int>(result);
 };
 
-bool Solution::hasSign(const std::string &s) {
+bool Solution::hasLeadingZeros(const std::string &s) const {
+    return s.back() == '0';
+}
+
+bool Solution::hasLeadingSpaces(const std::string &s) const {
+    return s.back() == ' ';
+}
+
+bool Solution::hasSign(const std::string &s) const {
     return s.back() == '+' || s.back() == '-';
 }
 
-bool Solution::isNegative(const std::string &s) {
+
+bool Solution::isNegative(const std::string &s) const {
     return s.back() == '-';
 }
 
-bool Solution::isPositive(const std::string &s) {
+bool Solution::isPositive(const std::string &s) const {
     return !isNegative(s);
 }

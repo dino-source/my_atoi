@@ -8,14 +8,17 @@ public:
 //private:
     long long charToInt(char ch);
     int numberOfDigits(std::string s);
-    long long orderOfMagnitude(int number_of_digits);
+    long long orderOfMagnitude(int number_of_digits) const;
     void discardLeadingSpaces(std::string &s);
     void discardLeadingZeroes(std::string &s);
-    int getSign(std::string &s);
+    int getSign(const std::string &s) const;
     int fixBounds(long long result, int sign);
-    bool hasSign(const std::string &s);
-    bool isNegative(const std::string &s);
-    bool isPositive(const std::string &s);
+    bool hasLeadingSpaces(const std::string &s) const;
+    bool hasLeadingZeros(const std::string &s) const;
+    bool hasSign(const std::string &s) const;
+    bool isNaN(const std::string &s) const;
+    bool isNegative(const std::string &s) const;
+    bool isPositive(const std::string &s) const;
 
     const long long UPPER_BOUND {2147483647};
     const long long LOWER_BOUND {-2147483648};
