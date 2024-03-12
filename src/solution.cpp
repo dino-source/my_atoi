@@ -7,13 +7,12 @@
 
 int Solution::myAtoi(std::string s) {
     std::ranges::reverse(s);
+    discardLeadingSpaces(s);
 
     int number_of_digits = numberOfDigits(s);
-    if (s.empty() || number_of_digits == 0) {
+    if (s.empty() || number_of_digits == 0 || std::isalpha(s.back())) {
         return 0;
     }
-
-    discardLeadingNonAllowedChars(s);
 
     long long result {};
     int sign {getSign(s)};
@@ -39,29 +38,21 @@ long long Solution::charToInt(char ch) {
 };
 
 int Solution::numberOfDigits(std::string s) {
-    char sign {};
-    bool has_sign_as_first_char {false};
     if (hasSign(s)) {
-        sign = s.back();
         s.pop_back();
-        has_sign_as_first_char = true;
     }
 
-    int number_of_digits {};
-    for (const auto ch : s) {
-        if (std::isdigit(ch)) {
+    int number_of_digits {0};
+    
+    for (auto it = s.crbegin(); it != s.crend(); ++it) {
+        if (std::isdigit(*it)) {
             ++number_of_digits;
         }
         else {
-            if (has_sign_as_first_char) {
-                s.push_back(sign);
-            }
-            return number_of_digits;
+            break;
         }
     }
-    if (has_sign_as_first_char) {
-        s.push_back(sign);
-    }
+
     return number_of_digits;
 };
 
@@ -73,12 +64,18 @@ long long Solution::orderOfMagnitude(int number_of_digits) {
     return order_of_magnitude;
 };
 
-void Solution::discardLeadingNonAllowedChars(std::string &s) {
-    // This function will discard all non digit characters,
-    // except of sign '+' and sign '-'
-    while (!std::isdigit(s.back())) {
-        s.pop_back();
-        if (hasSign((s))) {
+void Solution::discardLeadingSpaces(std::string &s) {
+    if (hasSign((s))) {
+            return;
+    }
+
+    int ss = static_cast<int>(s.size());
+
+    for (int i {ss - 1}; i > 0; --i) {
+        if (isspace(s[i])) {
+            s.pop_back();
+        }
+        else {
             return;
         }
     }
@@ -97,8 +94,8 @@ int Solution::getSign(std::string &s) {
 };
 
 int Solution::fixBounds(long long result, int sign) {
-    const int UPPER_BOUND {2147483647};
-    const int LOWER_BOUND {-2147483648};
+    const long long UPPER_BOUND {2147483647};
+    const long long LOWER_BOUND {-2147483648};
     
     result *= sign;
     if (result > UPPER_BOUND) {
