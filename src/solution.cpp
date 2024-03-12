@@ -6,16 +6,34 @@
 
 
 int Solution::myAtoi(std::string s) {
-    std::ranges::reverse(s);
-    discardLeadingSpaces(s);
-
-    int number_of_digits = numberOfDigits(s);
-    if (s.empty() || number_of_digits == 0 || std::isalpha(s.back())) {
+    if (s.empty()) {
+        return 0;
+    }
+    
+    if (s.size() == 1 && !std::isdigit(s.front())) {
         return 0;
     }
 
-    long long result {};
+    std::ranges::reverse(s);
+    discardLeadingSpaces(s);
+    discardLeadingZeroes(s);
+
+    int number_of_digits = numberOfDigits(s);
+    if (number_of_digits == 0 || std::isalpha(s.back())) {
+        return 0;
+    }
+    
     int sign {getSign(s)};
+
+    if (number_of_digits > 10 && sign == 1) {
+        return UPPER_BOUND;
+    }
+
+    if (number_of_digits > 10 && sign == -1) {
+        return LOWER_BOUND;
+    }
+
+    long long result {};
     if (hasSign(s)) {
         s.pop_back();
     }
@@ -66,7 +84,7 @@ long long Solution::orderOfMagnitude(int number_of_digits) {
 
 void Solution::discardLeadingSpaces(std::string &s) {
     if (hasSign((s))) {
-            return;
+        return;
     }
 
     int ss = static_cast<int>(s.size());
@@ -81,6 +99,30 @@ void Solution::discardLeadingSpaces(std::string &s) {
     }
 };
 
+void Solution::discardLeadingZeroes(std::string &s) {
+    char sign {s.back()};
+    bool has_sign {false};
+
+    if (hasSign((s))) {
+        s.pop_back();
+        has_sign = true;
+    }
+
+    int ss = static_cast<int>(s.size());
+
+    for (int i {ss - 1}; i >= 0; --i) {
+        if (s[i] == '0') {
+            s.pop_back();
+        }
+        else {
+            if (has_sign) {
+                s.push_back(sign);
+            }
+            return;
+        }
+    }
+}
+
 int Solution::getSign(std::string &s) {
     int sign {};
     if (isPositive(s)) {
@@ -93,10 +135,7 @@ int Solution::getSign(std::string &s) {
     return sign;
 };
 
-int Solution::fixBounds(long long result, int sign) {
-    const long long UPPER_BOUND {2147483647};
-    const long long LOWER_BOUND {-2147483648};
-    
+int Solution::fixBounds(long long result, int sign) {   
     result *= sign;
     if (result > UPPER_BOUND) {
         result = UPPER_BOUND;

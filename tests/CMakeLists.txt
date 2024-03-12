@@ -10,6 +10,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 if (BUILD_TESTING)
     set(SOURCES
         "discard_leading_spaces_test.cpp"
+        "discard_leading_zeroes.cpp"
         "has_sign_test.cpp"
         "is_negative_test.cpp"
         "is_positive_test.cpp"
