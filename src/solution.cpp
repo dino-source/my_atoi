@@ -1,5 +1,6 @@
 #include "solution.h"
 
+#include <cstddef>
 #include <string>
 #include <algorithm>
 #include <cctype>
@@ -43,11 +44,11 @@ int Solution::myAtoi(std::string s) {
     int sign {getSign(s)};
 
     if (number_of_digits > 10 && sign == 1) {
-        return UPPER_BOUND;
+        return static_cast<int>(UPPER_BOUND);
     }
 
     if (number_of_digits > 10 && sign == -1) {
-        return LOWER_BOUND;
+        return static_cast<int>(LOWER_BOUND);
     }
 
     long long result {};
@@ -80,7 +81,7 @@ void Solution::discardLeadingSpaces(std::string &s) {
     int ss = static_cast<int>(s.size());
 
     for (int i {ss - 1}; i >= 0; --i) {
-        if (isspace(s[i])) {
+        if (isspace(s[static_cast<std::size_t>(i)])) {
             s.pop_back();
         }
         else {
@@ -101,7 +102,7 @@ void Solution::discardLeadingZeroes(std::string &s) {
     int ss = static_cast<int>(s.size());
 
     for (int i {ss - 1}; i >= 0; --i) {
-        if (s[i] == '0') {
+        if (s[static_cast<std::size_t>(i)] == '0') {
             s.pop_back();
         }
         else {
